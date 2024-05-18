@@ -53,7 +53,7 @@ class Aluno(AbstractPessoa, ABC):
     def curso_aluno(self, curso_aluno):
         self.__curso_aluno = curso_aluno
 
-    def alterar_nome(self, novo_nome :str):
+    '''def alterar_nome(self, novo_nome :str):
         novo_nome = input("Escreva o novo nome:", )
         self.nome = novo_nome
         return self.__nome
@@ -63,3 +63,12 @@ class Aluno(AbstractPessoa, ABC):
 
     def alterar_data_nascimento(self, data_nascimento :datetime.date):
         return
+
+    def busca_pessoa_cpf(self, cpf: str):
+        pass
+
+    def alterar_matricula(self, matricula: str):
+        return
+
+    def alterar_curso(self, curso_aluno: Curso):
+        return'''
