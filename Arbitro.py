@@ -1,6 +1,6 @@
 # entidade Arbitro
 
-from abc import ABC, abstractmethod
+from abc import ABC
 from abstractPessoa import AbstractPessoa
 import datetime
 

@@ -1,6 +1,6 @@
 # entidade Aluno
 
-from abc import ABC, abstractmethod
+from abc import ABC
 from abstractPessoa import AbstractPessoa
 from Curso import Curso
 import datetime

@@ -31,7 +31,10 @@ class Equipe():
     def pontos(self, pontos):
         self.__pontos
     
-    def adicionar_aluno(self, lista_alunos):
+    def adicionar_aluno(self, aluno: Aluno):
+        if isinstance(aluno, Aluno):
+            existe_aluno = False
+            for alunos in self.__lista_alunos:
         return
     
     def remover_aluno(self, lista_alunos):

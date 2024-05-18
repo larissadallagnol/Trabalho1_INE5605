@@ -11,7 +11,6 @@ class Partida():
         self.__arbitro = arbitro
         self.__gols_primeira_equipe = gols_primeira_equipe
         self.__gols_segunda_equipe = gols_segunda_equipe
-        self.__equipe_vencedora = equipe_vencedora
         self.__classificacao = classificacao
     
     @property
@@ -63,14 +62,6 @@ class Partida():
         self.__gols_segunda_equipe = gols_segunda_equipe
     
     @property
-    def equipe_vencedora(self):
-        return self.__equipe_vencedora
-    
-    @equipe_vencedora.setter
-    def equipe_vencedora(self, equipe_vencedora):
-        self.__equipe_vencedora = equipe_vencedora
-    
-    @property
     def classificacao(self):
         return self.__classificacao
     
@@ -79,5 +70,13 @@ class Partida():
         self.__classificacao = classificacao
     
     def acrescentar_pontos(self, equipe: Equipe):
-        if equipe == self.__equipe_vencedora:
-            equipe.__pontos += 3
+        if self.__gols_primeira_equipe > self.__gols_segunda_equipe:
+            self.__primeira_equipe.__pontos += 3
+        elif self.__gols_primeira_equipe == self.__gols_segunda_equipe:
+            self.__primeira_equipe.__pontos += 1
+            self.__segunda_equipe.__pontos += 1
+        else:
+            self.__segunda_equipe.__pontos += 3
+
+    def atualizar_classificacao():
+        return

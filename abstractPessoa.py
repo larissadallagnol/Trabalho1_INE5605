@@ -34,7 +34,3 @@ class AbstractPessoa(ABC):
     @abstractmethod
     def alterar_data_nascimento(self, data_nascimento :datetime.date):
         pass
-
-    @abstractmethod
-    def busca_pessoa_cpf(self, cpf: str):
-        pass
