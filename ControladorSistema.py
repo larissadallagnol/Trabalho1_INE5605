@@ -41,26 +41,38 @@ class ControladorSistema:
     @property
     def controlador_campeonato(self):
         return self.__controlador_campeonato
+    
+    def gerar_relatorio_ganhadores(self):
+        return
+    
+    def gerar_relatorio_equipe_fez_mais_gols(self):
+        return
+    
+    def gerar_relatorio_equipe_levou_mais_gols(self):
+        return
+    
+    def gerar_relatorio_jogadores_mais_gols(self):
+        return
 
     def iniciar_sistema(self):
         self.abre_tela()
 
-    def cadastra_alunos():
+    def cadastra_alunos(self):
         self.__controlador_aluno.abre_tela()
 
-    def cadastra_arbitros():
+    def cadastra_arbitros(self):
         self.__controlador_arbitro.abre_tela()
 
-    def cadastra_cursos():
+    def cadastra_cursos(self):
         self.__controlador_curso.abre_tela()
 
-    def cadastra_equipes():
+    def cadastra_equipes(self):
         self.__controlador_equipe.abre_tela()
 
-    def cadastra_partidas():
+    def cadastra_partidas(self):
         self.__controlador_partida.abre_tela()
 
-    def cadastra_campeonatos():
+    def cadastra_campeonatos(self):
         self.__controlador_campeonato.abre_tela()
 
     def encerra_sistema(self):

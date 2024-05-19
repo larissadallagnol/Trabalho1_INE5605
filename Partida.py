@@ -5,7 +5,8 @@ from Arbitro import Arbitro
 import datetime
 
 class Partida():
-    def __init__(self, numero: int, data: datetime.date, primeira_equipe: Equipe, segunda_equipe: Equipe, arbitro: Arbitro, gols_primeira_equipe: int, gols_segunda_equipe: int, equipe_vencedora: Equipe):
+    def __init__(self, numero: int, data: datetime.date, primeira_equipe: Equipe, segunda_equipe: Equipe, 
+                 arbitro: Arbitro, gols_primeira_equipe: int, gols_segunda_equipe: int):
         self.__numero = numero
         self.__data = data
         self.__primeira_equipe = primeira_equipe

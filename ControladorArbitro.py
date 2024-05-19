@@ -31,7 +31,8 @@ class ControladorArbitro():
             if arbitro.cpf == dados_arbitro["cpf"]:
                 existe_arbitro = True
         if existe_arbitro is False:
-            novo_arbitro = Arbitro(dados_arbitro["nome"], dados_arbitro["cpf"], dados_arbitro["data_de_nascimento"], dados_arbitro["numero_partidas"])
+            novo_arbitro = Arbitro(dados_arbitro["nome"], dados_arbitro["cpf"], 
+                                   dados_arbitro["data_de_nascimento"], dados_arbitro["numero_partidas"])
             self.__arbitros.append(novo_arbitro)
 
     def editar_arbitro(self):
@@ -62,12 +63,15 @@ class ControladorArbitro():
 
     def listar_arbitros(self):
         for arbitro in self.__arbitros:
-            self.__tela_arbitro.mostra_arbitro({"nome": arbitro.nome, "cpf": arbitro.cpf, "data_de_nascimento": arbitro.data_de_nascimento, "numero_partidas": arbitro.numero_partidas})
+            self.__tela_arbitro.mostra_arbitro({"nome": arbitro.nome, "cpf": arbitro.cpf, 
+                                                "data_de_nascimento": arbitro.data_de_nascimento, 
+                                                "numero_partidas": arbitro.numero_partidas})
 
     def finalizar(self):
         self.__controlador_sistema.abre_tela()
 
     def abre_tela(self):
-        lista_opcoes = {0: self.finalizar, 1: self.cadastrar_arbitro, 2: self.editar_arbitro, 3: self.excluir_arbitro, 4: self.listar_arbitros}
+        lista_opcoes = {0: self.finalizar, 1: self.cadastrar_arbitro, 2: self.editar_arbitro, 
+                        3: self.excluir_arbitro, 4: self.listar_arbitros}
         while True:
             lista_opcoes[self.__tela_arbitro.mostra_tela_opcoes()]()

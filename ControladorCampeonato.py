@@ -20,6 +20,9 @@ class ControladorCampeonato():
             if campeonato.nome == nome:
                 return campeonato
         return None
+    
+    def classificacao(self):
+        return
 
     def cadastrar_campeonato(self):
         dados_campeonato = self.__tela_campeonato.pega_dados_campeonato()

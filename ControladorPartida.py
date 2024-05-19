@@ -46,7 +46,7 @@ class ControladorPartida():
         numero_da_partida = 1
         for equipe in ControladorEquipe.equipes:
             equipes.append(equipe)
-
+        
         for primeira_equipe in range(numero_de_equipes):
             for segunda_equipe in range(primeira_equipe + 1, numero_de_equipes):
                 arbitro = random.choice(ControladorArbitro.arbitros)

@@ -22,7 +22,8 @@ class ControladorAluno():
             if aluno.cpf == dados_aluno["cpf"]:
                 existe_aluno = True
         if existe_aluno is False:
-            novo_aluno = Aluno(dados_aluno["nome"], dados_aluno["cpf"], dados_aluno["data_de_nascimento"], dados_aluno["matricula"], dados_aluno["curso"])
+            novo_aluno = Aluno(dados_aluno["nome"], dados_aluno["cpf"], dados_aluno["data_de_nascimento"], 
+                               dados_aluno["matricula"], dados_aluno["curso"])
             self.__alunos.append(novo_aluno)
 
     def editar_aluno(self):
@@ -54,12 +55,14 @@ class ControladorAluno():
 
     def listar_alunos(self):
         for aluno in self.__alunos:
-            self.__tela_aluno.mostra_aluno({"nome": aluno.nome, "cpf": aluno.cpf, "data_de_nascimento": aluno.data_de_nascimento, "matricula": aluno.matricula, "curso": aluno.curso})
+            self.__tela_aluno.mostra_aluno({"nome": aluno.nome, "cpf": aluno.cpf, "data_de_nascimento": aluno.data_de_nascimento, 
+                                            "matricula": aluno.matricula, "curso": aluno.curso})
 
     def finalizar(self):
         self.__controlador_sistema.abre_tela()
 
     def abre_tela(self):
-        lista_opcoes = {0: self.finalizar, 1: self.cadastrar_aluno, 2: self.editar_aluno, 3: self.excluir_aluno, 4: self.listar_aluno}
+        lista_opcoes = {0: self.finalizar, 1: self.cadastrar_aluno, 2: self.editar_aluno, 
+                        3: self.excluir_aluno, 4: self.listar_aluno}
         while True:
             lista_opcoes[self.__tela_aluno.mostra_tela_opcoes()]()

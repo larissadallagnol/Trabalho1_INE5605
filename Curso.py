@@ -1,9 +1,11 @@
 # Entidade Curso
+from Equipe import Equipe
 
 class Curso():
     def __init__(self, codigo: int, nome: str):
         self.__codigo = codigo
         self.__nome = nome
+        self.__equipes = [Equipe]
     
     @property
     def codigo(self):
@@ -20,3 +22,11 @@ class Curso():
     @nome.setter
     def nome(self, nome):
         self.__nome = nome
+    
+    @property
+    def equipes(self):
+        return self.__equipes
+    
+    @equipes.setter
+    def equipes(self, equipes):
+        self.__equipes = equipes
