@@ -1,15 +1,18 @@
 # Controlador Equipe
 
-from Aluno import Aluno
-from ControladorAluno import ControladorAluno
 from Equipe import Equipe
 from TelaEquipe import TelaEquipe
+from ControladorAluno import ControladorAluno
 
 class ControladorEquipe():
     def __init__(self, controlador_sistema):
         self.__tela_equipe = TelaEquipe(self)
         self.__equipes = [Equipe]
         self.__controlador_sistema = controlador_sistema
+    
+    @property
+    def equipes(self):
+        return self.__equipes
 
     def busca_equipe_por_nome(self, nome: str):
         for equipe in self.__equipes:

@@ -8,6 +8,15 @@ class ControladorArbitro():
         self.__tela_arbitro = TelaArbitro(self)
         self.__arbitros = [Arbitro]
         self.__controlador_sistema = controlador_sistema
+    
+    @property
+    def arbitros(self):
+        return self.__arbitros
+    
+    def adiciona_partida(self, arbitro: Arbitro):
+        for _arbitro in self.__arbitros:
+            if _arbitro is arbitro:
+                arbitro.numero_partidas += 1
 
     def busca_arbitro_por_cpf(self, cpf: int):
         for arbitro in self.__arbitros:

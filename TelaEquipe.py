@@ -32,9 +32,8 @@ class TelaEquipe():
         nome = input("Nome: ")
         curso = input("Curso: ")
         lista_alunos = input("CPF's: ")
-        pontos = input("Pontos: ")
 
-        return {"nome": nome, "curso": curso, "lista_alunos": lista_alunos, "pontos": pontos}
+        return {"nome": nome, "curso": curso, "lista_alunos": lista_alunos}
 
     def mostra_equipe(self, dados_equipe):
         print("NOME DA EQUIPE: ", dados_equipe["nome"])
@@ -49,4 +48,3 @@ class TelaEquipe():
 
     def mostra_mensagem(self, msg):
         print(msg)
-
