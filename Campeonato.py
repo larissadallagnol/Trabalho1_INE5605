@@ -4,36 +4,31 @@ from Partida import Partida
 from Equipe import Equipe
 
 class Campeonato():
-    def __init__(self, nome_campeonato: str, equipes_campeonato: list):
-        self.__nome_campeonato = nome_campeonato
-        self.__equipes_campeonato = []
-        self.__partidas_campeonato = []
+    def __init__(self, nome: str, equipes: list, partidas: list):
+        self.__nome = nome
+        self.__equipes = []
+        self.__partidas = []
 
     @property
-    def nome_campeonato(self):
-        return self.__nome_campeonato
+    def nome(self):
+        return self.__nome
     
-    @nome_campeonato.setter
-    def nome_campeonato(self, nome_campeonato):
-        self.__nome_campeonato = nome_campeonato
+    @nome.setter
+    def nome(self, nome):
+        self.__nome = nome
     
     @property
-    def equipes_campeonato(self):
-        return self.__equipes_campeonato
+    def equipes(self):
+        return self.__equipes
     
-    @equipes_campeonato.setter
-    def equipes_campeonato(self, equipes_campeonato):
-        self.__equipes_campeonato = equipes_campeonato
-
-    '''def adicionar_equipe_campeonato(self, equipe: Equipe):
-        if isinstance(equipe, Equipe):
-            existe_equipe = False
-            for equipes in self.__equipes_campeonato:
-                if equipes == equipe:
-                    existe_equipe = True
-            if existe_equipe is False:
-                self.__equipes_campeonato.append(equipe)
-        return
-
-    def adicionar_partida_campeonato(self, partida: Partida):
-        return'''
+    @equipes.setter
+    def equipes(self, equipes):
+        self.__equipes = equipes
+    
+    @property
+    def partidas(self):
+        return self.__partidas
+    
+    @partidas.setter
+    def partidas(self, partidas):
+        self.__partidas = partidas

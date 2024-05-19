@@ -20,7 +20,7 @@ class TelaPartida():
 
     def mostra_tela_opcoes(self):
         print("--------- PARTIDAS ---------")
-        print("1 - Cadastrar")
+        print("1 - Registrar")
         print("2 - Excluir")
         print("3 - Listar")
         print("0 - Voltar")
