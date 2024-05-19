@@ -1,4 +1,5 @@
 # Entidade Partida
+
 from Equipe import Equipe
 from Arbitro import Arbitro
 import datetime
@@ -69,14 +70,11 @@ class Partida():
     def classificacao(self, classificacao):
         self.__classificacao = classificacao
     
-    def acrescentar_pontos(self, equipe: Equipe):
+    '''def acrescentar_pontos(self, equipe: Equipe):
         if self.__gols_primeira_equipe > self.__gols_segunda_equipe:
             self.__primeira_equipe.__pontos += 3
         elif self.__gols_primeira_equipe == self.__gols_segunda_equipe:
             self.__primeira_equipe.__pontos += 1
             self.__segunda_equipe.__pontos += 1
         else:
-            self.__segunda_equipe.__pontos += 3
-
-    def atualizar_classificacao():
-        return
+            self.__segunda_equipe.__pontos += 3'''

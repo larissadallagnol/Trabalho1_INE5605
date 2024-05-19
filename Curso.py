@@ -20,9 +20,3 @@ class Curso():
     @nome.setter
     def nome(self, nome):
         self.__nome = nome
-    
-    '''def alterar_codigo(self, codigo: int):
-        return
-    
-    def alterar_nome(self, nome: str):
-        return'''

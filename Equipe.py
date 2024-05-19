@@ -1,11 +1,14 @@
 # Entidade Equipe
+
 from Aluno import Aluno
+from Curso import Curso
 
 class Equipe():
-    def __init__(self, nome: str, lista_alunos: list, pontos: int):
+    def __init__(self, nome: str, curso: Curso, lista_alunos: list, pontos: int):
         self.__nome = nome
+        self.__curso = curso
         self.__lista_alunos = [Aluno]
-        self.__pontos = pontos
+        self.__pontos = pontos = 0
     
     @property
     def nome(self):
@@ -14,6 +17,14 @@ class Equipe():
     @nome.setter
     def nome(self, nome):
         self.__nome = nome
+    
+    @property
+    def curso(self):
+        return self.__curso
+    
+    @curso.setter
+    def curso(self, curso):
+        self.__curso = curso
     
     @property
     def lista_alunos(self):
@@ -29,13 +40,4 @@ class Equipe():
     
     @pontos.setter
     def pontos(self, pontos):
-        self.__pontos
-    
-    def adicionar_aluno(self, aluno: Aluno):
-        if isinstance(aluno, Aluno):
-            existe_aluno = False
-            for alunos in self.__lista_alunos:
-        return
-    
-    def remover_aluno(self, lista_alunos):
-        return
+        self.__pontos = pontos

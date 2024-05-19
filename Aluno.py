@@ -1,22 +1,19 @@
-# entidade Aluno
+# Entidade Aluno
 
-from abc import ABC
 from abstractPessoa import AbstractPessoa
 from Curso import Curso
 import datetime
 
-class Aluno(AbstractPessoa, ABC):
-    def __init__(self, nome: str, cpf :str, data_nascimento: datetime.date, matricula: str, curso_aluno: Curso):
-        self.nome = nome
-        self.cpf = cpf
-        self.data_nascimento = data_nascimento
-        self.matricula = matricula
-        self.curso_aluno = curso_aluno
+class Aluno(AbstractPessoa):
+    def __init__(self, nome: str, cpf :int, data_de_nascimento: datetime.date, matricula: str, curso: Curso):
+        super().__init__(nome, cpf, data_de_nascimento)
+        self.__matricula = matricula
+        self.__curso = curso
 
     @property
     def nome(self):
         return self.__nome
-    
+
     @nome.setter
     def nome(self, nome):
         self.__nome = nome
@@ -24,51 +21,31 @@ class Aluno(AbstractPessoa, ABC):
     @property
     def cpf(self):
         return self.__cpf
-    
+
     @cpf.setter
     def cpf(self, cpf):
         self.__cpf = cpf
 
     @property
-    def data_nascimento(self):
-        return self.__data_nascimento
-    
-    @data_nascimento.setter
-    def data_nascimento(self, data_nascimento):
-        self.__data_nascimento = data_nascimento
-    
+    def data_de_nascimento(self):
+        return self.__data_de_nascimento
+
+    @data_de_nascimento.setter
+    def data_de_nascimento(self, data_de_nascimento):
+        self.__data_de_nascimento = data_de_nascimento
+
     @property
     def matricula(self):
         return self.__matricula
-    
+
     @matricula.setter
     def matricula(self, matricula):
         self.__matricula = matricula
-    
+
     @property
-    def curso_aluno(self):
-        return self.__curso_aluno
-    
-    @curso_aluno.setter
-    def curso_aluno(self, curso_aluno):
-        self.__curso_aluno = curso_aluno
+    def curso(self):
+        return self.__curso
 
-    '''def alterar_nome(self, novo_nome :str):
-        novo_nome = input("Escreva o novo nome:", )
-        self.nome = novo_nome
-        return self.__nome
-
-    def alterar_cpf(self, cpf :str):
-        return
-
-    def alterar_data_nascimento(self, data_nascimento :datetime.date):
-        return
-
-    def busca_pessoa_cpf(self, cpf: str):
-        pass
-
-    def alterar_matricula(self, matricula: str):
-        return
-
-    def alterar_curso(self, curso_aluno: Curso):
-        return'''
+    @curso.setter
+    def curso(self, curso):
+        self.__curso = curso

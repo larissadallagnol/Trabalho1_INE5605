@@ -1,4 +1,5 @@
 # Entidade Campeonato
+
 from Partida import Partida
 from Equipe import Equipe
 
@@ -24,7 +25,7 @@ class Campeonato():
     def equipes_campeonato(self, equipes_campeonato):
         self.__equipes_campeonato = equipes_campeonato
 
-    def adicionar_equipe_campeonato(self, equipe: Equipe):
+    '''def adicionar_equipe_campeonato(self, equipe: Equipe):
         if isinstance(equipe, Equipe):
             existe_equipe = False
             for equipes in self.__equipes_campeonato:
@@ -35,4 +36,4 @@ class Campeonato():
         return
 
     def adicionar_partida_campeonato(self, partida: Partida):
-        return 
+        return'''

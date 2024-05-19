@@ -1,1 +1,75 @@
-# controlador geral do sistema
+# Controlador geral do sistema
+
+from TelaSistema import TelaSistema
+from ControladorAluno import ControladorAluno
+from ControladorArbitro import ControladorArbitro
+from ControladorCurso import ControladorCurso
+from ControladorEquipe import ControladorEquipe
+from ControladorPartida import ControladorPartida
+from ControladorCampeonato import ControladorCampeonato
+
+class ControladorSistema:
+    def __init__(self):
+        self.__controlador_aluno = ControladorAluno(self)
+        self.__controlador_arbitro = ControladorArbitro(self)
+        self.__controlador_curso = ControladorCurso(self)
+        self.__controlador_equipe = ControladorEquipe(self)
+        self.__controlador_partida = ControladorPartida(self)
+        self.__controlador_campeonato = ControladorCampeonato(self)
+        self.__tela_sistema = TelaSistema()
+
+    @property
+    def controlador_aluno(self):
+        return self.__controlador_aluno
+
+    @property
+    def controlador_arbitro(self):
+        return self.__controlador_arbitro
+
+    @property
+    def controlador_curso(self):
+        return self.__controlador_curso
+
+    @property
+    def controlador_equipe(self):
+        return self.__controlador_equipe
+
+    @property
+    def controlador_partida(self):
+        return self.__controlador_partida
+
+    @property
+    def controlador_campeonato(self):
+        return self.__controlador_campeonato
+
+    def iniciar_sistema(self):
+        self.abre_tela()
+
+    def cadastra_alunos():
+        self.__controlador_aluno.abre_tela()
+
+    def cadastra_arbitros():
+        self.__controlador_arbitro.abre_tela()
+
+    def cadastra_cursos():
+        self.__controlador_curso.abre_tela()
+
+    def cadastra_equipes():
+        self.__controlador_equipe.abre_tela()
+
+    def cadastra_partidas():
+        self.__controlador_partida.abre_tela()
+
+    def cadastra_campeonatos():
+        self.__controlador_campeonato.abre_tela()
+
+    def encerra_sistema(self):
+        exit(0)
+
+    def abre_tela(self):
+        lista_opcoes = {1: self.cadastra_alunos, 2: self.cadastra_arbitros, 3: self.cadastra_cursos, 4: self.cadastra_equipes, 5: self.cadastra_partidas, 6: self.cadastra_campeonatos, 0: self.encerra_sistema}
+
+        while True:
+            opcao_escolhida = self.__tela_sistema.tela_opcoes()
+            funcao_escolhida = lista_opcoes[opcao_escolhida]
+            funcao_escolhida()

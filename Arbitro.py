@@ -1,14 +1,11 @@
-# entidade Arbitro
+# Entidade Arbitro
 
-from abc import ABC
 from abstractPessoa import AbstractPessoa
 import datetime
 
-class Arbitro(AbstractPessoa, ABC):
-    def __init__(self, nome: str, cpf :str, data_nascimento: datetime.date, numero_partidas: int):
-        self.nome = nome
-        self.cpf = cpf
-        self.data_nascimento = data_nascimento
+class Arbitro(AbstractPessoa):
+    def __init__(self, nome: str, cpf :str, data_de_nascimento: datetime.date, numero_partidas: int):
+        super().__init__(nome, cpf, data_de_nascimento)
         self.__numero_partidas = numero_partidas
 
     @property
@@ -28,12 +25,12 @@ class Arbitro(AbstractPessoa, ABC):
         self.__cpf = cpf
 
     @property
-    def data_nascimento(self):
+    def data_de_nascimento(self):
         return self.__data_nascimento
     
-    @data_nascimento.setter
-    def data_nascimento(self, data_nascimento):
-        self.__data_nascimento = data_nascimento
+    @data_de_nascimento.setter
+    def data_de_nascimento(self, data_de_nascimento):
+        self.__data_de_nascimento = data_de_nascimento
     
     @property
     def numero_partidas(self):
@@ -42,20 +39,3 @@ class Arbitro(AbstractPessoa, ABC):
     @numero_partidas.setter
     def numero_partidas(self, numero_partidas):
         self.__numero_partidas = numero_partidas
-
-    '''def alterar_nome(self, novo_nome :str):
-        novo_nome = input("Escreva o novo nome:", )
-        self.nome = novo_nome
-        return self.__nome
-
-    def alterar_cpf(self, cpf :str):
-        return
-
-    def alterar_data_nascimento(self, data_nascimento :datetime.date):
-        return
-
-    def busca_pessoa_cpf(self, cpf: str):
-        return
-
-    def adicionar_partidas(self, numero_partidas: int):
-        return'''
