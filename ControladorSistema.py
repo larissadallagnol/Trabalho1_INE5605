@@ -1,1 +1,0 @@
-# controlador geral do sistema
