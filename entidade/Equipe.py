@@ -1,7 +1,7 @@
 # Entidade Equipe
 
-from Aluno import Aluno
-from Curso import Curso
+from entidade.Aluno import Aluno
+from entidade.Curso import Curso
 
 class Equipe():
     def __init__(self, nome: str, curso: Curso, lista_alunos: list, pontos: int):

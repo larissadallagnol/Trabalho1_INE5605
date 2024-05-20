@@ -1,5 +1,5 @@
 # Entidade Curso
-from Equipe import Equipe
+from entidade.Equipe import Equipe
 
 class Curso():
     def __init__(self, codigo: int, nome: str):

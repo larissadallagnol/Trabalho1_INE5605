@@ -30,7 +30,7 @@ class TelaEquipe():
     def pega_dados_equipe(self):
         print("--------- DADOS EQUIPES ---------")
         nome = input("Nome: ")
-        curso = input("Curso: ")
+        curso = input("Codigo do Curso: ")
         lista_alunos = input("CPF's: ")
 
         return {"nome": nome, "curso": curso, "lista_alunos": lista_alunos}
