@@ -14,6 +14,14 @@ class ControladorPartida():
         self.__tela_partida = TelaPartida(self)
         self.__partidas = [Partida]
         self.__controlador_sistema = controlador_sistema
+    
+    @property
+    def partidas(self):
+        return self.__partidas
+    
+    @partidas.setter
+    def partidas(self, partidas):
+        self.__partidas = partidas
 
     # Busca uma partida pelo numero dela
     def busca_partida_por_numero(self, numero: str):

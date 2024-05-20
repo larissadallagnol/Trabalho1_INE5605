@@ -24,7 +24,8 @@ class ControladorCampeonato():
     
     # Define a classificacao do campeonato
     def classificacao(self):
-        return
+        classificacao = {}
+        return classificacao
 
     # Cadastra um novo campeonato
     def cadastrar_campeonato(self):
