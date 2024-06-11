@@ -5,17 +5,13 @@ from limite.telaCurso import TelaCurso
 
 class ControladorCurso():
     def __init__(self, controlador_sistema):
-        self.__tela_curso = TelaCurso(self)
-        self.__cursos = [Curso]
+        self.__tela_curso = TelaCurso()
+        self.__cursos = []
         self.__controlador_sistema = controlador_sistema
     
     @property
     def cursos(self):
         return self.__cursos
-    
-    @cursos.setter
-    def cursos(self, cursos):
-        self.__cursos = cursos
 
     # Busca um curso pelo seu codigo
     def busca_curso_por_codigo(self, codigo: int):
@@ -64,14 +60,18 @@ class ControladorCurso():
 
         if curso is not None:
             self.__cursos.remove(curso)
+            self.__tela_curso.mostra_mensagem("Curso excluido")
             self.listar_cursos()
         else:
             self.__tela_curso.mostra_mensagem("ATENCAO: Este curso nao existe")
 
     # Lista os cursos existentes
     def listar_cursos(self):
-        for curso in self.__cursos:
-            self.__tela_curso.mostra_curso({"codigo": curso.codigo, "nome": curso.nome})
+        if len(self.__cursos) != 0:
+            for curso in self.__cursos:
+                self.__tela_curso.mostra_curso({"codigo": curso.codigo, "nome": curso.nome})
+        else:
+            self.__tela_curso.mostra_mensagem("ATENCAO: Ainda nao existem cursos")
 
     # Finaliza o uso do controlador e volta para o sistema principal
     def finalizar(self):

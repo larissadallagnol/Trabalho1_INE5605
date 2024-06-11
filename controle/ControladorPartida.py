@@ -3,9 +3,6 @@
 from entidade.partida import Partida
 from entidade.arbitro import Arbitro
 from limite.telaPartida import TelaPartida
-from controle.controladorEquipe import ControladorEquipe
-from controle.controladorArbitro import ControladorArbitro
-from controle.controladorCampeonato import ControladorCampeonato
 import datetime as dt
 import random
 
@@ -54,15 +51,15 @@ class ControladorPartida():
 
     # Registra as partidas automaticamente a partir das equipes e arbitros existentes
     def registar_partidas(self, equipes: list, arbitro: Arbitro):
-        numero_de_equipes = len(ControladorEquipe.equipes)
+        numero_de_equipes = len(self.__controlador_sistema.controlador_equipe.equipes)
         numero_da_partida = 1
-        for equipe in ControladorEquipe.equipes:
+        for equipe in self.__controlador_sistema.controlador_equipe.equipes:
             equipes.append(equipe)
         
         for primeira_equipe in range(numero_de_equipes):
             for segunda_equipe in range(primeira_equipe + 1, numero_de_equipes):
-                arbitro = random.choice(ControladorArbitro.arbitros)
-                ControladorArbitro.adiciona_partida(arbitro)
+                arbitro = random.choice(self.__controlador_sistema.controlador_arbitro.arbitros)
+                self.__controlador_sistema.controlador_arbitro.adiciona_partida(arbitro)
                 data = self.gera_data_partida()
                 gols_primeira_equipe = random.randint(0, 10)
                 gols_segunda_equipe = random.randint(0, 10)
@@ -70,7 +67,7 @@ class ControladorPartida():
                                        arbitro, gols_primeira_equipe, gols_segunda_equipe)
                 self.__partidas.append(nova_partida)
                 self.acrescentar_pontos(nova_partida)
-                ControladorCampeonato.classificacao()
+                self.__controlador_sistema.controlador_campeonato.classificacao()
 
     # Exclui uma partida existente
     def excluir_partida(self):
@@ -80,16 +77,20 @@ class ControladorPartida():
 
         if partida is not None:
             self.__partidas.remove(partida)
+            self.__tela_partida.mostra_mensagem("Partida excluida")
             self.listar_partidas()
         else:
             self.__tela_partida.mostra_mensagem("ATENCAO: Esta partida nao existe")
 
     # Lista as partidas existentes no campeonato
     def listar_partidas(self):
-        for partida in self.__partidas:
-            self.__tela_partida.mostra_partida({"numero": partida.numero, "data": partida.data, "primeira_equipe": partida.primeira_equipe, 
-                                                "segunda_equipe": partida.segunda_equipe, "arbitro": partida.arbitro, "gols_primeira_equipe": partida.gols_primeira_equipe, 
-                                                "gols_segunda_equipe": partida.gols_segunda_equipe})
+        if len(self.__partidas) != 0:
+            for partida in self.__partidas:
+                self.__tela_partida.mostra_partida({"numero": partida.numero, "data": partida.data, "primeira_equipe": partida.primeira_equipe, 
+                                                    "segunda_equipe": partida.segunda_equipe, "arbitro": partida.arbitro, "gols_primeira_equipe": partida.gols_primeira_equipe, 
+                                                    "gols_segunda_equipe": partida.gols_segunda_equipe})
+        else:
+            self.__tela_partida.mostra_mensagem("ATENCAO: Ainda nao existem partidas")
 
     # Finaliza o uso do controlador e volta para o sistema principal
     def finalizar(self):

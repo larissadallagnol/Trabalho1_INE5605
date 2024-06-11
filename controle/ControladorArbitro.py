@@ -5,8 +5,8 @@ from limite.telaArbitro import TelaArbitro
 
 class ControladorArbitro():
     def __init__(self, controlador_sistema):
-        self.__tela_arbitro = TelaArbitro(self)
-        self.__arbitros = [Arbitro]
+        self.__tela_arbitro = TelaArbitro()
+        self.__arbitros = []
         self.__controlador_sistema = controlador_sistema
     
     @property
@@ -62,16 +62,20 @@ class ControladorArbitro():
 
         if arbitro is not None:
             self.__arbitros.remove(arbitro)
+            self.__tela_arbitro.mostra_mensagem("Arbitro excluido")
             self.listar_arbitros()
         else:
             self.__tela_arbitro.mostra_mensagem("ATENCAO: Este arbitro nao existe")
 
     # Lista os arbitros existentes
     def listar_arbitros(self):
-        for arbitro in self.__arbitros:
-            self.__tela_arbitro.mostra_arbitro({"nome": arbitro.nome, "cpf": arbitro.cpf, 
-                                                "data_de_nascimento": arbitro.data_de_nascimento, 
-                                                "numero_partidas": arbitro.numero_partidas})
+        if len(self.__arbitros) != 0:
+            for arbitro in self.__arbitros:
+                self.__tela_arbitro.mostra_arbitro({"nome": arbitro.nome, "cpf": arbitro.cpf, 
+                                                    "data_de_nascimento": arbitro.data_de_nascimento, 
+                                                    "numero_partidas": arbitro.numero_partidas})
+        else:
+            self.__tela_arbitro.mostra_mensagem("ATENCAO: Ainda nao existem arbitros")
 
     # Finaliza o uso do controlador e volta para o sistema principal
     def finalizar(self):

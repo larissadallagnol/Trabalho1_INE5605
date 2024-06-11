@@ -2,13 +2,11 @@
 
 from entidade.equipe import Equipe
 from limite.telaEquipe import TelaEquipe
-from controle.controladorAluno import ControladorAluno
-from controle.controladorCurso import ControladorCurso
 
 class ControladorEquipe():
     def __init__(self, controlador_sistema):
-        self.__tela_equipe = TelaEquipe(self)
-        self.__equipes = [Equipe]
+        self.__tela_equipe = TelaEquipe()
+        self.__equipes = []
         self.__controlador_sistema = controlador_sistema
 
     @property
@@ -33,19 +31,19 @@ class ControladorEquipe():
             alunos_equipe = []
             cpf_split = dados_equipe["lista_alunos"].split()
             for cpf in cpf_split:
-                aluno = ControladorAluno.busca_aluno_por_cpf(cpf)
+                aluno = self.__controlador_sistema.controlador_aluno.busca_aluno_por_cpf(cpf)
                 if aluno.curso == dados_equipe["curso"]:
                     alunos_equipe.append(aluno)
                 else:
                     print("ATENCAO: Este aluno nao pertence ao curso da equipe")
-            curso_equipe = ControladorCurso.busca_curso_por_codigo(dados_equipe["curso"])
+            curso_equipe = self.__controlador_sistema.controlador_curso.busca_curso_por_codigo(dados_equipe["curso"])
             nova_equipe = Equipe(dados_equipe["nome"], curso_equipe.nome, 
                                  alunos_equipe, dados_equipe["pontos"],)
             self.__equipes.append(nova_equipe)
-            for curso in ControladorCurso.cursos:
+            for curso in self.__controlador_sistema.controlador_curso.cursos:
                 if curso.nome == curso_equipe.nome:
                     curso.equipes.append(nova_equipe)
-            ControladorCurso.verifica_cursos_sem_equipe()
+            self.__controlador_sistema.controlador_curso.verifica_cursos_sem_equipe()
 
     # Edita uma equipe existente
     def editar_equipe(self):
@@ -56,12 +54,12 @@ class ControladorEquipe():
         if equipe is not None:
             novos_dados_equipe = self.__tela_equipe.pega_dados_equipe()
             equipe.nome = novos_dados_equipe["nome"]
-            curso = ControladorCurso.busca_curso_por_codigo(novos_dados_equipe["curso"])
+            curso = self.__controlador_sistema.controlador_curso.busca_curso_por_codigo(novos_dados_equipe["curso"])
             equipe.curso = curso.nome
             alunos_equipe = []
             cpf_split = novos_dados_equipe["lista_alunos"].split()
             for cpf in cpf_split:
-                aluno = ControladorAluno.busca_aluno_por_cpf(cpf)
+                aluno = self.__controlador_sistema.controlador_aluno.busca_aluno_por_cpf(cpf)
                 if aluno.curso == novos_dados_equipe["curso"]:
                     alunos_equipe.append(aluno)
                 else:
@@ -79,18 +77,22 @@ class ControladorEquipe():
 
         if equipe is not None:
             self.__equipes.remove(equipe)
-            for curso in ControladorCurso.cursos:
+            for curso in self.__controlador_sistema.controlador_curso.cursos:
                 if curso == equipe.curso:
                     curso.equipes.remove(equipe)
+                    self.__tela_equipe.mostra_mensagem("Equipe excluida")
             self.listar_equipes()
         else:
             self.__tela_equipe.mostra_mensagem("ATENCAO: Esta equipe nao existe")
 
     # Lista as equipes existentes
     def listar_equipes(self):
-        for equipe in self.__equipes:
-            self.__tela_equipe.mostra_equipe({"nome": equipe.nome, "curso": equipe.curso, 
+        if len(self.__equipes) != 0:
+            for equipe in self.__equipes:
+                self.__tela_equipe.mostra_equipe({"nome": equipe.nome, "curso": equipe.curso, 
                                               "lista_alunos": equipe.lista_alunos, "pontos": equipe.pontos})
+        else:
+            self.__tela_equipe.mostra_mensagem("ATENCAO: Ainda nao existem equipes")
 
     # Finaliza o uso do controlador e volta para o sistema principal
     def finalizar(self):

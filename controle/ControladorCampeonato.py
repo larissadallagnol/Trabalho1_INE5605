@@ -2,13 +2,11 @@
 
 from entidade.campeonato import Campeonato
 from limite.telaCampeonato import TelaCampeonato
-from controle.controladorEquipe import ControladorEquipe
-from controle.controladorPartida import ControladorPartida
 
 class ControladorCampeonato():
     def __init__(self, controlador_sistema):
-        self.__tela_campeonato = TelaCampeonato(self)
-        self.__campeonatos = [Campeonato]
+        self.__tela_campeonato = TelaCampeonato()
+        self.__campeonatos = []
         self.__controlador_sistema = controlador_sistema
     
     @property
@@ -38,11 +36,11 @@ class ControladorCampeonato():
             lista_equipes = []
             nome_split = dados_campeonato["lista_equipes"].split()
             for nome in nome_split:
-                lista_equipes.append(ControladorEquipe.busca_equipe_por_nome(nome))
+                lista_equipes.append(self.__controlador_sistema.controlador_equipe.busca_equipe_por_nome(nome))
             lista_partidas = []
             numero_split = dados_campeonato["lista_partidas"].split()
             for numero in numero_split:
-                lista_partidas.append(ControladorPartida.busca_partida_por_numero(numero))
+                lista_partidas.append(self.__controlador_sistema.controlador_partida.busca_partida_por_numero(numero))
             novo_campeonato = Campeonato(dados_campeonato["nome"], lista_equipes, lista_partidas)
             self.__campeonatos.append(novo_campeonato)
 
@@ -58,12 +56,12 @@ class ControladorCampeonato():
             lista_equipes = []
             nome_split = novos_dados_campeonato["lista_equipes"].split()
             for nome in nome_split:
-                lista_equipes.append(ControladorEquipe.busca_equipe_por_nome(nome))
+                lista_equipes.append(self.__controlador_sistema.controlador_equipe.busca_equipe_por_nome(nome))
             campeonato.equipes = lista_equipes
             lista_partidas = []
             numero_split = novos_dados_campeonato["lista_partidas"].split()
             for numero in numero_split:
-                lista_partidas.append(ControladorPartida.busca_partida_por_numero(numero))
+                lista_partidas.append(self.__controlador_sistema.controlador_partida.busca_partida_por_numero(numero))
             campeonato.partidas = lista_partidas
             self.listar_campeonatos()
         else:
@@ -77,14 +75,18 @@ class ControladorCampeonato():
 
         if campeonato is not None:
             self.__campeonatos.remove(campeonato)
+            self.__tela_campeonato.mostra_mensagem("Campeonato excluido")
             self.listar_campeonatos()
         else:
             self.__tela_campeonato.mostra_mensagem("ATENCAO: Este campeonato nao existe")
 
     # Lista os campeonatos existentes
     def listar_campeonatos(self):
-        for campeonato in self.__campeonatos:
-            self.__tela_campeonato.mostra_campeonato({"nome": campeonato.nome, "equipes": campeonato.equipes, "partidas": campeonato.partidas})
+        if len(self.__campeonatos) != 0:
+            for campeonato in self.__campeonatos:
+                self.__tela_campeonato.mostra_campeonato({"nome": campeonato.nome, "equipes": campeonato.equipes, "partidas": campeonato.partidas})
+        else:
+            self.__tela_campeonato.mostra_mensagem("ATENCAO: Ainda nao existem campeonatos")
 
     # Finaliza o uso do controlador e volta para o sistema principal
     def finalizar(self):

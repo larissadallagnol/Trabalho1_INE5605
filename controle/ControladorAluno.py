@@ -5,8 +5,8 @@ from limite.telaAluno import TelaAluno
 
 class ControladorAluno():
     def __init__(self, controlador_sistema):
-        self.__tela_aluno = TelaAluno(self)
-        self.__alunos = [Aluno]
+        self.__tela_aluno = TelaAluno()
+        self.__alunos = []
         self.__controlador_sistema = controlador_sistema
 
     # Busca um aluno pelo CPF dele
@@ -27,6 +27,8 @@ class ControladorAluno():
             novo_aluno = Aluno(dados_aluno["nome"], dados_aluno["cpf"], dados_aluno["data_de_nascimento"], 
                                dados_aluno["matricula"], dados_aluno["curso"])
             self.__alunos.append(novo_aluno)
+        else:
+            self.__tela_aluno.mostra_mensagem("ATENCAO: Aluno já existente")
 
     # Edita um aluno existente
     def editar_aluno(self):
@@ -53,15 +55,20 @@ class ControladorAluno():
 
         if aluno is not None:
             self.__alunos.remove(aluno)
+            self.__tela_aluno.mostra_mensagem("Aluno excluido")
             self.listar_alunos()
         else:
             self.__tela_aluno.mostra_mensagem("ATENCAO: Este aluno nao existe")
 
     # Lista os alunos existentes
     def listar_alunos(self):
-        for aluno in self.__alunos:
-            self.__tela_aluno.mostra_aluno({"nome": aluno.nome, "cpf": aluno.cpf, "data_de_nascimento": aluno.data_de_nascimento, 
-                                            "matricula": aluno.matricula, "curso": aluno.curso})
+        if len(self.__alunos) != 0:
+            self.__tela_aluno.mostra_mensagem("Alunos cadastrados:")
+            for aluno in self.__alunos:
+                self.__tela_aluno.mostra_aluno({"nome": aluno.nome, "cpf": aluno.cpf, "data_de_nascimento": aluno.data_de_nascimento, 
+                                                "matricula": aluno.matricula, "curso": aluno.curso})
+        else:
+            self.__tela_aluno.mostra_mensagem("ATENCAO: Ainda nao existem alunos")
 
     # Finaliza o uso do controlador e volta para o sistema principal
     def finalizar(self):
@@ -70,6 +77,6 @@ class ControladorAluno():
     # Abre tela de opcoes
     def abre_tela(self):
         lista_opcoes = {0: self.finalizar, 1: self.cadastrar_aluno, 2: self.editar_aluno, 
-                        3: self.excluir_aluno, 4: self.listar_aluno}
+                        3: self.excluir_aluno, 4: self.listar_alunos}
         while True:
             lista_opcoes[self.__tela_aluno.mostra_tela_opcoes()]()
