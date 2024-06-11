@@ -8,8 +8,8 @@ import random
 
 class ControladorPartida():
     def __init__(self, controlador_sistema):
-        self.__tela_partida = TelaPartida(self)
-        self.__partidas = [Partida]
+        self.__tela_partida = TelaPartida()
+        self.__partidas = []
         self.__controlador_sistema = controlador_sistema
     
     @property
