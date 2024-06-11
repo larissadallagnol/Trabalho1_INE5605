@@ -9,22 +9,22 @@ class Campeonato():
     @property
     def nome(self):
         return self.__nome
+
+    @property
+    def equipes(self):
+        return self.__equipes
+
+    @property
+    def partidas(self):
+        return self.__partidas
     
     @nome.setter
     def nome(self, nome):
         self.__nome = nome
     
-    @property
-    def equipes(self):
-        return self.__equipes
-    
     @equipes.setter
     def equipes(self, equipes):
         self.__equipes = equipes
-    
-    @property
-    def partidas(self):
-        return self.__partidas
     
     @partidas.setter
     def partidas(self, partidas):
