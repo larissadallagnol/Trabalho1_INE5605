@@ -76,7 +76,6 @@ class ControladorCampeonato():
         if campeonato is not None:
             self.__campeonatos.remove(campeonato)
             self.__tela_campeonato.mostra_mensagem("Campeonato excluido")
-            self.listar_campeonatos()
         else:
             self.__tela_campeonato.mostra_mensagem("ATENCAO: Este campeonato nao existe")
 

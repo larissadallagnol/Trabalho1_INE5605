@@ -56,7 +56,6 @@ class ControladorAluno():
         if aluno is not None:
             self.__alunos.remove(aluno)
             self.__tela_aluno.mostra_mensagem("Aluno excluido")
-            self.listar_alunos()
         else:
             self.__tela_aluno.mostra_mensagem("ATENCAO: Este aluno nao existe")
 

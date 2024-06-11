@@ -29,8 +29,8 @@ class TelaArbitro():
         print("--------- DADOS ARBITROS ---------")
         nome = input("Nome: ")
         cpf = input("CPF: ")
-        data_de_nascimento = ("Data-de-Nascimento: ")
-        numero_partidas = ("Numero-de-partidas: ")
+        data_de_nascimento = input("Data-de-Nascimento: ")
+        numero_partidas = input("Numero-de-partidas: ")
 
         return {"nome": nome, "cpf": cpf, "data_de_nascimento": data_de_nascimento, "numero_partidas": numero_partidas}
 

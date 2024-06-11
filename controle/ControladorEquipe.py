@@ -81,7 +81,6 @@ class ControladorEquipe():
                 if curso == equipe.curso:
                     curso.equipes.remove(equipe)
                     self.__tela_equipe.mostra_mensagem("Equipe excluida")
-            self.listar_equipes()
         else:
             self.__tela_equipe.mostra_mensagem("ATENCAO: Esta equipe nao existe")
 

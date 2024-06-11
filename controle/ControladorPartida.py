@@ -78,7 +78,6 @@ class ControladorPartida():
         if partida is not None:
             self.__partidas.remove(partida)
             self.__tela_partida.mostra_mensagem("Partida excluida")
-            self.listar_partidas()
         else:
             self.__tela_partida.mostra_mensagem("ATENCAO: Esta partida nao existe")
 

@@ -63,7 +63,6 @@ class ControladorArbitro():
         if arbitro is not None:
             self.__arbitros.remove(arbitro)
             self.__tela_arbitro.mostra_mensagem("Arbitro excluido")
-            self.listar_arbitros()
         else:
             self.__tela_arbitro.mostra_mensagem("ATENCAO: Este arbitro nao existe")
 

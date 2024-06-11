@@ -61,7 +61,6 @@ class ControladorCurso():
         if curso is not None:
             self.__cursos.remove(curso)
             self.__tela_curso.mostra_mensagem("Curso excluido")
-            self.listar_cursos()
         else:
             self.__tela_curso.mostra_mensagem("ATENCAO: Este curso nao existe")
 
