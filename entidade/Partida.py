@@ -1,7 +1,7 @@
 # Entidade Partida
 
-from entidade.Equipe import Equipe
-from entidade.Arbitro import Arbitro
+from entidade.equipe import Equipe
+from entidade.arbitro import Arbitro
 import datetime
 
 class Partida():

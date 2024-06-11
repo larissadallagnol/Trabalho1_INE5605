@@ -1,12 +1,12 @@
 # Controlador geral do sistema
 
-from limite.TelaSistema import TelaSistema
-from controle.ControladorAluno import ControladorAluno
-from controle.ControladorArbitro import ControladorArbitro
-from controle.ControladorCurso import ControladorCurso
-from controle.ControladorEquipe import ControladorEquipe
-from controle.ControladorPartida import ControladorPartida
-from controle.ControladorCampeonato import ControladorCampeonato
+from limite.telaSistema import TelaSistema
+from controle.controladorAluno import ControladorAluno
+from controle.controladorArbitro import ControladorArbitro
+from controle.controladorCurso import ControladorCurso
+from controle.controladorEquipe import ControladorEquipe
+from controle.controladorPartida import ControladorPartida
+from controle.controladorCampeonato import ControladorCampeonato
 
 class ControladorSistema:
     def __init__(self):

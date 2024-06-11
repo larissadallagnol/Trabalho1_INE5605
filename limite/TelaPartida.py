@@ -1,7 +1,7 @@
 # Tela Partida
 import datetime as dt
 import random
-from controle.ControladorPartida import ControladorPartida
+from controle.controladorPartida import ControladorPartida
 
 class TelaPartida():
     # Tratamento da entrada de dados

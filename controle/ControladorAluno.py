@@ -1,7 +1,7 @@
 # Controlador Aluno
 
-from entidade.Aluno import Aluno
-from limite.TelaAluno import TelaAluno
+from entidade.aluno import Aluno
+from limite.telaAluno import TelaAluno
 
 class ControladorAluno():
     def __init__(self, controlador_sistema):

@@ -1,9 +1,9 @@
 # Controlador Campeonato
 
-from entidade.Campeonato import Campeonato
-from limite.TelaCampeonato import TelaCampeonato
-from controle.ControladorEquipe import ControladorEquipe
-from controle.ControladorPartida import ControladorPartida
+from entidade.campeonato import Campeonato
+from limite.telaCampeonato import TelaCampeonato
+from controle.controladorEquipe import ControladorEquipe
+from controle.controladorPartida import ControladorPartida
 
 class ControladorCampeonato():
     def __init__(self, controlador_sistema):

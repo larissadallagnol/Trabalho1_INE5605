@@ -1,11 +1,11 @@
 # Controlador Partida
 
-from entidade.Partida import Partida
-from entidade.Arbitro import Arbitro
-from limite.TelaPartida import TelaPartida
-from controle.ControladorEquipe import ControladorEquipe
-from controle.ControladorArbitro import ControladorArbitro
-from controle.ControladorCampeonato import ControladorCampeonato
+from entidade.partida import Partida
+from entidade.arbitro import Arbitro
+from limite.telaPartida import TelaPartida
+from controle.controladorEquipe import ControladorEquipe
+from controle.controladorArbitro import ControladorArbitro
+from controle.controladorCampeonato import ControladorCampeonato
 import datetime as dt
 import random
 

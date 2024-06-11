@@ -1,7 +1,7 @@
 # Entidade Aluno
 
 from entidade.abstractPessoa import AbstractPessoa
-from entidade.Curso import Curso
+from entidade.curso import Curso
 import datetime
 
 class Aluno(AbstractPessoa):

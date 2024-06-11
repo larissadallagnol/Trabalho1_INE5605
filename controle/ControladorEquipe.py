@@ -1,9 +1,9 @@
 # Controlador Equipe
 
-from entidade.Equipe import Equipe
-from limite.TelaEquipe import TelaEquipe
-from controle.ControladorAluno import ControladorAluno
-from controle.ControladorCurso import ControladorCurso
+from entidade.equipe import Equipe
+from limite.telaEquipe import TelaEquipe
+from controle.controladorAluno import ControladorAluno
+from controle.controladorCurso import ControladorCurso
 
 class ControladorEquipe():
     def __init__(self, controlador_sistema):
