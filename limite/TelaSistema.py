@@ -24,5 +24,5 @@ class TelaSistema:
         print("5 - Partidas")
         print("6 - Campeonatos")
         print("0 - Finalizar sistema")
-        opcao = int(input("Escolha a opcao:"))
+        opcao = int(self.le_num_inteiro("Escolha a opcao:", [1, 2, 3, 4, 5, 6, 0]))
         return opcao

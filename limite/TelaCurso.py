@@ -24,8 +24,6 @@ class TelaCurso():
         print("0 - Voltar")
         opcao = int(self.le_num_inteiro("Escolha a opcao: ", [1, 2, 3, 4, 0]))
         return opcao
-
-    # Tratamento da entrada de dados
     
     def pega_dados_curso(self):
         print("--------- DADOS CURSOS ---------")

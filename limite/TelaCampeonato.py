@@ -24,14 +24,12 @@ class TelaCampeonato():
         print("0 - Voltar")
         opcao = int(self.le_num_inteiro("Escolha a opcao: ", [1, 2, 3, 4, 0]))
         return opcao
-
-    # Tratamento da entrada de dados
     
     def pega_dados_campeonato(self):
         print("--------- DADOS CAMPEONATO ---------")
         nome = input("Nome: ")
         lista_equipes = input("Equipes: ")
-        lista_partidas = input("Codigo das partidas: ")
+        lista_partidas = input("Codigo-das-partidas: ")
 
         return {"nome": nome, "lista_equipes": lista_equipes, "lista_partidas": lista_partidas}
 

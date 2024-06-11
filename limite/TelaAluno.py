@@ -24,14 +24,12 @@ class TelaAluno():
         print("0 - Voltar")
         opcao = int(self.le_num_inteiro("Escolha a opcao: ", [1, 2, 3, 4, 0]))
         return opcao
-
-    # Tratamento da entrada de dados
     
     def pega_dados_aluno(self):
         print("--------- DADOS ALUNO ---------")
         nome = input("Nome: ")
         cpf = input("CPF: ")
-        data_de_nascimento = ("Data de nascimento: ")
+        data_de_nascimento = ("Data-de-Nascimento: ")
         matricula = ("Matricula: ")
         curso = ("Curso: ")
 

@@ -24,13 +24,11 @@ class TelaEquipe():
         print("0 - Voltar")
         opcao = int(self.le_num_inteiro("Escolha a opcao: ", [1, 2, 3, 4, 0]))
         return opcao
-
-    # Tratamento da entrada de dados
     
     def pega_dados_equipe(self):
         print("--------- DADOS EQUIPES ---------")
         nome = input("Nome: ")
-        curso = input("Codigo do Curso: ")
+        curso = input("Codigo-do-Curso: ")
         lista_alunos = input("CPF's: ")
 
         return {"nome": nome, "curso": curso, "lista_alunos": lista_alunos}
