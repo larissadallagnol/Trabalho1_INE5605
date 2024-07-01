@@ -17,12 +17,12 @@ class TelaSistema:
 
     def tela_opcoes(self):
         print("--------- SISTEMA CAMPEONATOS ---------")
-        print("1 - Alunos")
-        print("2 - Arbitros")
-        print("3 - Cursos")
+        print("1 - Cursos")
+        print("2 - Alunos")
+        print("3 - Arbitros")
         print("4 - Equipes")
         print("5 - Partidas")
         print("6 - Campeonatos")
         print("0 - Finalizar sistema")
-        opcao = int(input("Escolha a opcao:"))
+        opcao = int(self.le_num_inteiro("Escolha a opcao:", [1, 2, 3, 4, 5, 6, 0]))
         return opcao

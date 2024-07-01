@@ -1,12 +1,12 @@
 # Controlador Arbitro
 
-from entidade.Arbitro import Arbitro
-from limite.TelaArbitro import TelaArbitro
+from entidade.arbitro import Arbitro
+from limite.telaArbitro import TelaArbitro
 
 class ControladorArbitro():
     def __init__(self, controlador_sistema):
-        self.__tela_arbitro = TelaArbitro(self)
-        self.__arbitros = [Arbitro]
+        self.__tela_arbitro = TelaArbitro()
+        self.__arbitros = []
         self.__controlador_sistema = controlador_sistema
     
     @property
@@ -17,7 +17,7 @@ class ControladorArbitro():
     def adiciona_partida(self, arbitro: Arbitro):
         for _arbitro in self.__arbitros:
             if _arbitro is arbitro:
-                arbitro.numero_partidas += 1
+                arbitro.numero_partidas = int(arbitro.numero_partidas) + 1
 
     # Busca um arbitro pelo CPF dele
     def busca_arbitro_por_cpf(self, cpf: int):
@@ -37,6 +37,9 @@ class ControladorArbitro():
             novo_arbitro = Arbitro(dados_arbitro["nome"], dados_arbitro["cpf"], 
                                    dados_arbitro["data_de_nascimento"], dados_arbitro["numero_partidas"])
             self.__arbitros.append(novo_arbitro)
+            self.__tela_arbitro.mostra_mensagem("Arbitro cadastrado com sucesso!")
+        else:
+            self.__tela_arbitro.mostra_mensagem("ATENCAO: Arbitro ja existente!")
 
     # Edita um arbitro existente
     def editar_arbitro(self):
@@ -50,9 +53,9 @@ class ControladorArbitro():
             arbitro.cpf = novos_dados_arbitro["cpf"]
             arbitro.data_de_nascimento = novos_dados_arbitro["data_de_nascimento"]
             arbitro.numero_partidas = novos_dados_arbitro["numero_partidas"]
-            self.listar_arbitros()
+            self.__tela_arbitro.mostra_mensagem("Arbitro editado com sucesso!")
         else:
-            self.__tela_arbitro.mostra_mensagem("ATENCAO: Este arbitro nao existe")
+            self.__tela_arbitro.mostra_mensagem("ATENCAO: Este arbitro nao existe!")
 
     # Exclui um arbitro existente
     def excluir_arbitro(self):
@@ -62,16 +65,20 @@ class ControladorArbitro():
 
         if arbitro is not None:
             self.__arbitros.remove(arbitro)
-            self.listar_arbitros()
+            self.__tela_arbitro.mostra_mensagem("Arbitro excluido com sucesso!")
         else:
-            self.__tela_arbitro.mostra_mensagem("ATENCAO: Este arbitro nao existe")
+            self.__tela_arbitro.mostra_mensagem("ATENCAO: Este arbitro nao existe!")
 
     # Lista os arbitros existentes
     def listar_arbitros(self):
-        for arbitro in self.__arbitros:
-            self.__tela_arbitro.mostra_arbitro({"nome": arbitro.nome, "cpf": arbitro.cpf, 
-                                                "data_de_nascimento": arbitro.data_de_nascimento, 
-                                                "numero_partidas": arbitro.numero_partidas})
+        if len(self.__arbitros) != 0:
+            self.__tela_arbitro.mostra_mensagem("Arbitros cadastrados:")
+            for arbitro in self.__arbitros:
+                self.__tela_arbitro.mostra_arbitro({"nome": arbitro.nome, "cpf": arbitro.cpf, 
+                                                    "data_de_nascimento": arbitro.data_de_nascimento, 
+                                                    "numero_partidas": arbitro.numero_partidas})
+        else:
+            self.__tela_arbitro.mostra_mensagem("ATENCAO: Ainda nao existem arbitros!")
 
     # Finaliza o uso do controlador e volta para o sistema principal
     def finalizar(self):

@@ -24,16 +24,14 @@ class TelaAluno():
         print("0 - Voltar")
         opcao = int(self.le_num_inteiro("Escolha a opcao: ", [1, 2, 3, 4, 0]))
         return opcao
-
-    # Tratamento da entrada de dados
     
     def pega_dados_aluno(self):
         print("--------- DADOS ALUNO ---------")
         nome = input("Nome: ")
-        cpf = input("CPF: ")
-        data_de_nascimento = ("Data de nascimento: ")
-        matricula = ("Matricula: ")
-        curso = ("Curso: ")
+        cpf = int(input("CPF: "))
+        data_de_nascimento = input("Data-de-Nascimento: ")
+        matricula = input("Matricula: ")
+        curso = int(input("Codigo-do-Curso: "))
 
         return {"nome": nome, "cpf": cpf, "data_de_nascimento": data_de_nascimento, "matricula": matricula, "curso": curso}
 
@@ -46,7 +44,7 @@ class TelaAluno():
         print("\n")
 
     def seleciona_aluno(self):
-        cpf = input("CPF do aluno que deseja selecionar: ")
+        cpf = int(input("CPF do aluno que deseja selecionar: "))
         return cpf
 
     def mostra_mensagem(self, msg):

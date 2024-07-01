@@ -24,22 +24,23 @@ class TelaEquipe():
         print("0 - Voltar")
         opcao = int(self.le_num_inteiro("Escolha a opcao: ", [1, 2, 3, 4, 0]))
         return opcao
-
-    # Tratamento da entrada de dados
     
     def pega_dados_equipe(self):
         print("--------- DADOS EQUIPES ---------")
         nome = input("Nome: ")
-        curso = input("Codigo do Curso: ")
-        lista_alunos = input("CPF's: ")
+        curso = int(input("Codigo-do-Curso: "))
+        lista_alunos = input("CPF's dos alunos: ")
+        pontos = 0
+        saldo_de_gols = 0
 
-        return {"nome": nome, "curso": curso, "lista_alunos": lista_alunos}
+        return {"nome": nome, "curso": curso, "lista_alunos": lista_alunos, "pontos": pontos, "saldo_de_gols": saldo_de_gols}
 
     def mostra_equipe(self, dados_equipe):
         print("NOME DA EQUIPE: ", dados_equipe["nome"])
-        print("CURSO DA EQUIPE: "), dados_equipe["curso"]
+        print("CURSO DA EQUIPE: ", dados_equipe["curso"])
         print("LISTA DE ALUNOS DA EQUIPE: ", dados_equipe["lista_alunos"])
         print("PONTOS DA EQUIPE: ", dados_equipe["pontos"])
+        print("SALDO DE GOLS DA EQUIPE:", dados_equipe["saldo_de_gols"])
         print("\n")
 
     def seleciona_equipe(self):

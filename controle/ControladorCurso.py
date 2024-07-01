@@ -1,27 +1,25 @@
 # Controlador Curso
 
-from entidade.Curso import Curso
-from limite.TelaCurso import TelaCurso
+from entidade.curso import Curso
+from limite.telaCurso import TelaCurso
 
 class ControladorCurso():
     def __init__(self, controlador_sistema):
-        self.__tela_curso = TelaCurso(self)
-        self.__cursos = [Curso]
+        self.__tela_curso = TelaCurso()
+        self.__cursos = []
         self.__controlador_sistema = controlador_sistema
     
     @property
     def cursos(self):
         return self.__cursos
-    
-    @cursos.setter
-    def cursos(self, cursos):
-        self.__cursos = cursos
 
     # Busca um curso pelo seu codigo
     def busca_curso_por_codigo(self, codigo: int):
         for curso in self.__cursos:
             if curso.codigo == codigo:
                 return curso
+        else:
+            self.__tela_curso.mostra_mensagem("ATENCAO: Este curso nao existe!")
         return None
 
     # Verifica se algum curso esta sem equipe
@@ -39,8 +37,11 @@ class ControladorCurso():
             if curso.codigo == dados_curso["codigo"]:
                 existe_curso = True
         if existe_curso is False:
-            novo_curso = Curso(dados_curso["codigo"], dados_curso["nome"])
+            novo_curso = Curso(dados_curso["codigo"], dados_curso["nome"], dados_curso["equipes"])
             self.__cursos.append(novo_curso)
+            self.__tela_curso.mostra_mensagem("Curso cadastrado com sucesso!")
+        else:
+            self.__tela_curso.mostra_mensagem("ATENCAO: Curso ja existente!")
 
     # Edita um curso existente
     def editar_curso(self):
@@ -52,9 +53,10 @@ class ControladorCurso():
             novos_dados_curso = self.__tela_curso.pega_dados_curso()
             curso.codigo = novos_dados_curso["codigo"]
             curso.nome = novos_dados_curso["nome"]
-            self.listar_cursos()
+            curso.equipes = novos_dados_curso["equipes"]
+            self.__tela_curso.mostra_mensagem("Curso cadastrado com sucesso!")
         else:
-            self.__tela_curso.mostra_mensagem("ATENCAO: Este curso nao existe")
+            self.__tela_curso.mostra_mensagem("ATENCAO: Este curso nao existe!")
 
     # Exclui um curso existente
     def excluir_curso(self):
@@ -64,14 +66,18 @@ class ControladorCurso():
 
         if curso is not None:
             self.__cursos.remove(curso)
-            self.listar_cursos()
+            self.__tela_curso.mostra_mensagem("Curso excluido com sucesso!")
         else:
-            self.__tela_curso.mostra_mensagem("ATENCAO: Este curso nao existe")
+            self.__tela_curso.mostra_mensagem("ATENCAO: Este curso nao existe!")
 
     # Lista os cursos existentes
     def listar_cursos(self):
-        for curso in self.__cursos:
-            self.__tela_curso.mostra_curso({"codigo": curso.codigo, "nome": curso.nome})
+        if len(self.__cursos) != 0:
+            self.__tela_curso.mostra_mensagem("Cursos cadastrados:")
+            for curso in self.__cursos:
+                self.__tela_curso.mostra_curso({"codigo": curso.codigo, "nome": curso.nome, "equipes": curso.equipes})
+        else:
+            self.__tela_curso.mostra_mensagem("ATENCAO: Ainda nao existem cursos!")
 
     # Finaliza o uso do controlador e volta para o sistema principal
     def finalizar(self):

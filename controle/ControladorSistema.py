@@ -1,12 +1,12 @@
 # Controlador geral do sistema
 
-from limite.TelaSistema import TelaSistema
-from controle.ControladorAluno import ControladorAluno
-from controle.ControladorArbitro import ControladorArbitro
-from controle.ControladorCurso import ControladorCurso
-from controle.ControladorEquipe import ControladorEquipe
-from controle.ControladorPartida import ControladorPartida
-from controle.ControladorCampeonato import ControladorCampeonato
+from limite.telaSistema import TelaSistema
+from controle.controladorAluno import ControladorAluno
+from controle.controladorArbitro import ControladorArbitro
+from controle.controladorCurso import ControladorCurso
+from controle.controladorEquipe import ControladorEquipe
+from controle.controladorPartida import ControladorPartida
+from controle.controladorCampeonato import ControladorCampeonato
 
 class ControladorSistema:
     def __init__(self):
@@ -43,7 +43,9 @@ class ControladorSistema:
         return self.__controlador_campeonato
     
     def gerar_relatorio_ganhadores(self):
-        return
+        print("Classificacao do campeonato:")
+        print(self.cadastra_campeonatos.classificacao())
+        print("A equipe ganhadora do campeonato é a: ")
     
     def gerar_relatorio_equipe_fez_mais_gols(self):
         return
@@ -79,7 +81,7 @@ class ControladorSistema:
         exit(0)
 
     def abre_tela(self):
-        lista_opcoes = {1: self.cadastra_alunos, 2: self.cadastra_arbitros, 3: self.cadastra_cursos, 4: self.cadastra_equipes, 
+        lista_opcoes = {1: self.cadastra_cursos, 2: self.cadastra_alunos, 3: self.cadastra_arbitros, 4: self.cadastra_equipes, 
                         5: self.cadastra_partidas, 6: self.cadastra_campeonatos, 0: self.encerra_sistema}
 
         while True:

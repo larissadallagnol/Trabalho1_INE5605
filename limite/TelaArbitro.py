@@ -24,15 +24,13 @@ class TelaArbitro():
         print("0 - Voltar")
         opcao = int(self.le_num_inteiro("Escolha a opcao: ", [1, 2, 3, 4, 0]))
         return opcao
-
-    # Tratamento da entrada de dados
     
     def pega_dados_arbitro(self):
         print("--------- DADOS ARBITROS ---------")
         nome = input("Nome: ")
         cpf = input("CPF: ")
-        data_de_nascimento = ("Data de nascimento: ")
-        numero_partidas = ("Numero de partidas: ")
+        data_de_nascimento = input("Data-de-Nascimento: ")
+        numero_partidas = 0
 
         return {"nome": nome, "cpf": cpf, "data_de_nascimento": data_de_nascimento, "numero_partidas": numero_partidas}
 

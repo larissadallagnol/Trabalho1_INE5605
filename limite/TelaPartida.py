@@ -1,7 +1,4 @@
 # Tela Partida
-import datetime as dt
-import random
-from controle.ControladorPartida import ControladorPartida
 
 class TelaPartida():
     # Tratamento da entrada de dados
@@ -26,22 +23,19 @@ class TelaPartida():
         print("0 - Voltar")
         opcao = int(self.le_num_inteiro("Escolha a opcao: ", [1, 2, 3, 0]))
         return opcao
-    
-    # Tratamento da entrada de dados
 
     def mostra_partida(self, dados_partida):
         print("NUMERO DA PARTIDA: ", dados_partida["numero"])
         print("DATA DA PARTIDA: ", dados_partida["data"])
-        print("EQUIPE 1 DA PARTIDA: "), dados_partida["primeira_equipe"]
+        print("EQUIPE 1 DA PARTIDA: ", dados_partida["primeira_equipe"])
         print("EQUIPE 2 DA PARTIDA: ", dados_partida["segunda_equipe"])
         print("ARBITRO DA PARTIDA: ", dados_partida["arbitro"])
         print("GOLS DA EQUIPE 1: ", dados_partida["gols_primeira_equipe"])
         print("GOLS DA EQUIPE 2: ", dados_partida["gols_segunda_equipe"])
-        print("CLASSIFICACAO DAS EQUIPES: ", dados_partida["classificacao"])
         print("\n")
 
     def seleciona_partida(self):
-        numero = input("Numero da partida que deseja selecionar: ")
+        numero = int(input("Numero da partida que deseja selecionar: "))
         return numero
 
     def mostra_mensagem(self, msg):
