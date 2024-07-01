@@ -1,10 +1,10 @@
 # Entidade Curso
 
 class Curso():
-    def __init__(self, codigo: int, nome: str):
+    def __init__(self, codigo: int, nome: str, equipes: list):
         self.__codigo = codigo
         self.__nome = nome
-        self.__equipes = []
+        self.__equipes = equipes
     
     @property
     def codigo(self):

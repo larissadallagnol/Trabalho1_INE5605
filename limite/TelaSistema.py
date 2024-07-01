@@ -17,9 +17,9 @@ class TelaSistema:
 
     def tela_opcoes(self):
         print("--------- SISTEMA CAMPEONATOS ---------")
-        print("1 - Alunos")
-        print("2 - Arbitros")
-        print("3 - Cursos")
+        print("1 - Cursos")
+        print("2 - Alunos")
+        print("3 - Arbitros")
         print("4 - Equipes")
         print("5 - Partidas")
         print("6 - Campeonatos")

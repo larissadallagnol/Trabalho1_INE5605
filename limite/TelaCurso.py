@@ -27,18 +27,20 @@ class TelaCurso():
     
     def pega_dados_curso(self):
         print("--------- DADOS CURSOS ---------")
-        codigo = input("Codigo: ")
+        codigo = int(input("Codigo: "))
         nome = input("Nome: ")
+        equipes = []
 
-        return {"codigo": codigo, "nome": nome}
+        return {"codigo": codigo, "nome": nome, "equipes": equipes}
 
     def mostra_curso(self, dados_curso):
         print("CODIGO DO CURSO: ", dados_curso["codigo"])
         print("NOME DO CURSO: ", dados_curso["nome"])
+        print("EQUIPES DO CURSO: ", dados_curso["equipes"])
         print("\n")
 
     def seleciona_curso(self):
-        codigo = input("Codigo do curso que deseja selecionar: ")
+        codigo = int(input("Codigo do curso que deseja selecionar: "))
         return codigo
 
     def mostra_mensagem(self, msg):

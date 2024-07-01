@@ -3,8 +3,8 @@
 class Campeonato():
     def __init__(self, nome: str, equipes: list, partidas: list):
         self.__nome = nome
-        self.__equipes = []
-        self.__partidas = []
+        self.__equipes = equipes
+        self.__partidas = partidas
 
     @property
     def nome(self):

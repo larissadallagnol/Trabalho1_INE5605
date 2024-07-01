@@ -1,7 +1,6 @@
 # Controlador Partida
 
 from entidade.partida import Partida
-from entidade.arbitro import Arbitro
 from limite.telaPartida import TelaPartida
 import datetime as dt
 import random
@@ -29,45 +28,58 @@ class ControladorPartida():
     
     # Acrescenta pontos a uma equipe
     def acrescentar_pontos(self, partida: Partida):
-        if partida.__gols_primeira_equipe > partida.__gols_segunda_equipe:
-            partida.__primeira_equipe.__pontos += 3
-        elif partida.__gols_primeira_equipe == partida.__gols_segunda_equipe:
-            partida.__primeira_equipe.__pontos += 1
-            partida.__segunda_equipe.__pontos += 1
+        primeira_equipe = self.__controlador_sistema.controlador_equipe.busca_equipe_por_nome(partida.primeira_equipe)
+        segunda_equipe = self.__controlador_sistema.controlador_equipe.busca_equipe_por_nome(partida.segunda_equipe)
+        if partida.gols_primeira_equipe > partida.gols_segunda_equipe:
+            primeira_equipe.pontos += 3
+        elif partida.gols_primeira_equipe == partida.gols_segunda_equipe:
+            primeira_equipe.pontos += 1
+            segunda_equipe.pontos += 1
         else:
-            partida.__segunda_equipe.__pontos += 3
-    
-    # Gera datas para as partidas
-    def gera_data_partida(self):
-        data_inicio_campeonato = '2024-06-01'
-        data_fim_campeonato = '2024-12-31'
-        delta = dt.datetime.strptime(data_fim_campeonato, '%Y-%m-%d') - dt.datetime.strptime(data_inicio_campeonato, '%Y-%m-%d')
-        # Gera um numero aleatorio de dias dentro do intervalo
-        random_dias = random.randint(0, delta.days)
-        # Adiciona o numero aleatorio de dias na data de inicio do campeonato
-        random_data = data_inicio_campeonato + dt.timedelta(days=random_dias)
-        data_da_partida = random_data.strftime('%Y-%m-%d')
-        return data_da_partida
+            segunda_equipe.pontos += 3
+
+    # Descrementa pontos de uma equipe
+    def decrementar_pontos(self, partida: Partida):
+        primeira_equipe = self.__controlador_sistema.controlador_equipe.busca_equipe_por_nome(partida.primeira_equipe)
+        segunda_equipe = self.__controlador_sistema.controlador_equipe.busca_equipe_por_nome(partida.segunda_equipe)
+        if partida.gols_primeira_equipe > partida.gols_segunda_equipe:
+            primeira_equipe.pontos -= 3
+        elif partida.gols_primeira_equipe == partida.gols_segunda_equipe:
+            primeira_equipe.pontos -= 1
+            segunda_equipe.pontos -= 1
+        else:
+            segunda_equipe.pontos -= 3
 
     # Registra as partidas automaticamente a partir das equipes e arbitros existentes
-    def registar_partidas(self, equipes: list, arbitro: Arbitro):
-        numero_de_equipes = len(self.__controlador_sistema.controlador_equipe.equipes)
-        numero_da_partida = 1
+    def registar_partidas(self):
+        data_inicial = dt.date.today()
+        data_da_partida = data_inicial
+
+        equipes = []
         for equipe in self.__controlador_sistema.controlador_equipe.equipes:
             equipes.append(equipe)
-        
-        for primeira_equipe in range(numero_de_equipes):
-            for segunda_equipe in range(primeira_equipe + 1, numero_de_equipes):
+
+        numero_da_partida = 1
+        for i, equipe_um in enumerate(equipes):
+            for equipe_dois in equipes[i + 1:]:
                 arbitro = random.choice(self.__controlador_sistema.controlador_arbitro.arbitros)
                 self.__controlador_sistema.controlador_arbitro.adiciona_partida(arbitro)
-                data = self.gera_data_partida()
+
                 gols_primeira_equipe = random.randint(0, 10)
                 gols_segunda_equipe = random.randint(0, 10)
-                nova_partida = Partida(int(numero_da_partida), data, equipes[primeira_equipe], equipes[segunda_equipe], 
-                                       arbitro, gols_primeira_equipe, gols_segunda_equipe)
+                equipe_um.saldo_de_gols = equipe_um.saldo_de_gols + gols_primeira_equipe
+                equipe_dois.saldo_de_gols = equipe_dois.saldo_de_gols + gols_segunda_equipe
+
+                nova_partida = Partida(int(numero_da_partida), data_da_partida, equipe_um.nome, equipe_dois.nome, 
+                                       arbitro.nome, gols_primeira_equipe, gols_segunda_equipe)
+
                 self.__partidas.append(nova_partida)
                 self.acrescentar_pontos(nova_partida)
                 self.__controlador_sistema.controlador_campeonato.classificacao()
+                numero_da_partida = numero_da_partida + 1
+                data_da_partida = data_da_partida + dt.timedelta(days=1)
+        
+        self.__tela_partida.mostra_mensagem("Partidas cadastradas com sucesso!")
 
     # Exclui uma partida existente
     def excluir_partida(self):
@@ -76,20 +88,26 @@ class ControladorPartida():
         partida = self.busca_partida_por_numero(numero_partida)
 
         if partida is not None:
+            self.decrementar_pontos(partida)
+            primeira_equipe = self.__controlador_sistema.controlador_equipe.busca_equipe_por_nome(partida.primeira_equipe)
+            segunda_equipe = self.__controlador_sistema.controlador_equipe.busca_equipe_por_nome(partida.segunda_equipe)
+            primeira_equipe.saldo_de_gols -= partida.gols_primeira_equipe
+            segunda_equipe.saldo_de_gols -= partida.gols_segunda_equipe
             self.__partidas.remove(partida)
-            self.__tela_partida.mostra_mensagem("Partida excluida")
+            self.__tela_partida.mostra_mensagem("Partida excluida!")
         else:
-            self.__tela_partida.mostra_mensagem("ATENCAO: Esta partida nao existe")
+            self.__tela_partida.mostra_mensagem("ATENCAO: Esta partida nao existe!")
 
     # Lista as partidas existentes no campeonato
     def listar_partidas(self):
         if len(self.__partidas) != 0:
+            self.__tela_partida.mostra_mensagem("Partidas cadastradas:")
             for partida in self.__partidas:
                 self.__tela_partida.mostra_partida({"numero": partida.numero, "data": partida.data, "primeira_equipe": partida.primeira_equipe, 
                                                     "segunda_equipe": partida.segunda_equipe, "arbitro": partida.arbitro, "gols_primeira_equipe": partida.gols_primeira_equipe, 
                                                     "gols_segunda_equipe": partida.gols_segunda_equipe})
         else:
-            self.__tela_partida.mostra_mensagem("ATENCAO: Ainda nao existem partidas")
+            self.__tela_partida.mostra_mensagem("ATENCAO: Ainda nao existem partidas!")
 
     # Finaliza o uso do controlador e volta para o sistema principal
     def finalizar(self):

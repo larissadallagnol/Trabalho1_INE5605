@@ -27,12 +27,11 @@ class TelaPartida():
     def mostra_partida(self, dados_partida):
         print("NUMERO DA PARTIDA: ", dados_partida["numero"])
         print("DATA DA PARTIDA: ", dados_partida["data"])
-        print("EQUIPE 1 DA PARTIDA: "), dados_partida["primeira_equipe"]
+        print("EQUIPE 1 DA PARTIDA: ", dados_partida["primeira_equipe"])
         print("EQUIPE 2 DA PARTIDA: ", dados_partida["segunda_equipe"])
         print("ARBITRO DA PARTIDA: ", dados_partida["arbitro"])
         print("GOLS DA EQUIPE 1: ", dados_partida["gols_primeira_equipe"])
         print("GOLS DA EQUIPE 2: ", dados_partida["gols_segunda_equipe"])
-        print("CLASSIFICACAO DAS EQUIPES: ", dados_partida["classificacao"])
         print("\n")
 
     def seleciona_partida(self):

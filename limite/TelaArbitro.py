@@ -30,7 +30,7 @@ class TelaArbitro():
         nome = input("Nome: ")
         cpf = input("CPF: ")
         data_de_nascimento = input("Data-de-Nascimento: ")
-        numero_partidas = input("Numero-de-partidas: ")
+        numero_partidas = 0
 
         return {"nome": nome, "cpf": cpf, "data_de_nascimento": data_de_nascimento, "numero_partidas": numero_partidas}
 
